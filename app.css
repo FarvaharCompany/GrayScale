@@ -1,0 +1,424 @@
+/* =========================================
+   app.css - Global Styles & Bootstrap Overrides
+   Author: Principal Frontend Architect
+   Project: Grayscale Homepage
+   ========================================= */
+
+/* Import Google Font (Nunito as defined in your palette) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+/* --- 1. CUSTOM PROPERTIES (From provided palette) --- */
+:root {
+  /* Provided Bootstrap Colors */
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #7464a1;
+  --bs-pink: #d63384;
+  --bs-red: #a16468;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #e4c662;
+  --bs-green: #67c29c;
+  --bs-teal: #64a19d;
+  --bs-cyan: #1cabc4;
+  --bs-black: #000;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #64a19d;
+  --bs-secondary: #7464a1;
+  --bs-success: #67c29c;
+  --bs-info: #1cabc4;
+  --bs-warning: #e4c662;
+  --bs-danger: #a16468;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-body-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- 2. GLOBAL RESETS & UTILITIES --- */
+body {
+  font-family: var(--bs-body-font-family);
+  color: var(--bs-gray-900);
+  background-color: var(--bs-white);
+}
+
+/* --- 3. CUSTOM NAVBAR (Sticky & Scroll Interaction) --- */
+/* Base state (transparent) */
+.navbar-custom {
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Navbar links: Base state (White/Light gray to be readable on Hero image) */
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease-in-out;
+  margin-left: 30px;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .nav-link:hover {
+  color: var(--bs-white);
+}
+
+/* SCROLLED STATE: When user scrolls (controlled via app.js) */
+.navbar-custom.navbar-scrolled {
+  background-color: var(--bs-white) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Scrolled state: Inactive links become black (as per your spec) */
+.navbar-custom.navbar-scrolled .navbar-brand,
+.navbar-custom.navbar-scrolled .nav-link:not(.active) {
+  color: var(--bs-gray-900);
+}
+.navbar-custom.navbar-scrolled .navbar-brand:hover,
+.navbar-custom.navbar-scrolled .nav-link:not(.active):hover {
+  color: var(--bs-primary);
+}
+
+/* SCROLLSPY / ACTIVE STATE: As requested */
+/* Uses standard Bootstrap .active class triggered by data-bs-spy="scroll" */
+.navbar-custom .nav-link.active {
+  color: var(--bs-green) !important; /* #67c29c */
+  border-bottom: 2px solid var(--bs-green);
+  padding-bottom: calc(0.5rem - 2px); /* Adjust padding to account for border */
+}
+
+/* --- 4. HERO SECTION (Masthead) --- */
+.masthead {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 35rem;
+  padding: 15rem 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 75%, #000 100%), url(./assets/img/bg-masthead.jpg); /* Placeholder Mountain Image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.masthead h1 {
+  font-size: 6.5rem;
+  line-height: 6.5rem;
+  letter-spacing: 0.8rem;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.masthead h2 {
+  max-width: 35rem;
+  font-size: 1.5rem;
+}
+
+.masthead a {
+    padding: 1.25rem 2rem;
+    border-radius: 10px;
+}
+/* =========================================
+   PROJECTS SECTION - Pixel-Perfect Fix
+   ========================================= */
+
+.projects-section {
+  padding: 10rem 0;
+  background-color: var(--bs-light);
+}
+
+/* --- Shoreline Row --- */
+.projects-section .shoreline-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.projects-section .featured-text {
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 992px) {
+  .projects-section .featured-text {
+    padding: 3rem 2rem;
+  }
+}
+
+.projects-section .featured-text h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: var(--bs-gray-900);
+  margin-bottom: 1rem;
+}
+
+.projects-section .featured-text p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--bs-gray-600);
+}
+
+/* --- 2x2 Square Grid (Misty & Mountains) --- */
+.square-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.square-grid-row {
+  display: flex;
+  width: 100%;
+  height: 500px;
+}
+
+.square-grid-row + .square-grid-row {
+  /* No gap between rows - they touch */
+  margin-top: 0;
+}
+
+.square-grid-item {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.square-grid-item img.square-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text inside black cards */
+.square-grid-item.bg-black h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: var(--bs-white);
+  margin-bottom: 1rem;
+}
+
+.square-grid-item.bg-black p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+}
+
+/* --- Responsive: Stack on mobile --- */
+@media (max-width: 991px) {
+  .square-grid-row {
+    flex-direction: column;
+  }
+
+  .square-grid-item {
+    aspect-ratio: 16 / 9;
+  }
+
+  .square-grid-item.bg-black {
+    min-height: 250px;
+  }
+}
+
+/* ==================== SIGNUP SECTION ==================== */
+.signup-section {
+    padding: 10rem 0;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0.5) 75%, 
+        rgba(0, 0, 0, 0.9) 100%
+    ), url(./assets/img/bg-signup.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.signup-input {
+    max-width: 500px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.signup-input:focus {
+    background-color: #fff;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+.btn-signup {
+    background-color: var(--bs-teal);
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-signup:hover {
+    background-color: #1a9988;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== CONTACT SECTION ==================== */
+.contact-section {
+    padding-bottom: 3rem;
+}
+
+.contact-card {
+    border: none;
+    border-bottom: 3px solid var(--bs-teal);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: none !important;
+    transform: none !important;
+}
+
+.contact-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    transform: none !important;
+}
+
+.contact-card .card-body {
+    padding: 2rem 1.5rem;
+}
+
+.contact-card i {
+    color: var(--bs-teal) !important;
+}
+
+.contact-card h4 {
+    color: #212529;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.contact-card .divider {
+    width: 50px;
+    height: 2px;
+    background-color: var(--bs-teal);
+    border: none;
+    margin: 1rem auto;
+}
+
+.contact-card .text-muted {
+    color: #6c757d !important;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.contact-card a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: var(--bs-teal);
+}
+
+/* ==================== SOCIAL ICONS ==================== */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #212529;
+    color: var(--bs-gray-800);
+    border-radius: 50%;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: #212529;
+}
+
+.social-icon:hover i {
+    color: #6c757d !important;
+}
+
+.social-icon i {
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background-color: #000;
+    padding: 2rem 0;
+}
+
+.footer .text-muted {
+    color: #6c757d !important;
+    font-size: 0.875rem;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+    .signup-section {
+        padding: 6rem 0;
+    }
+    
+    .signup-input {
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .btn-signup {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .contact-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .social-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .signup-section h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .contact-card .card-body {
+        padding: 1.5rem 1rem;
+    }
+}
